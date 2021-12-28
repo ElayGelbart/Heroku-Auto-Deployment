@@ -1,0 +1,16 @@
+import { execSync } from "child_process";
+export const checkShallow = () => {
+  const isShallow = execSync(
+    "git rev-parse --is-shallow-repository"
+  ).toString();
+
+  if (isShallow.match(/true/)) {
+    execSync("git fetch --prune --unshallow");
+    console.log("git unshallow repository🔄");
+  }
+};
+export const gitStack = (AppName: string) => {
+  execSync("heroku stack:set heroku-20");
+  execSync("heroku plugins:install heroku-repo");
+  execSync(`heroku repo:reset -a ${AppName}`);
+};
