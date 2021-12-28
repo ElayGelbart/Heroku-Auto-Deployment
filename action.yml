@@ -1,4 +1,4 @@
-name: "Heroku Deployment"
+name: "Heroku Auto Deployment"
 author: "Elay Gelbart"
 description: "Heroku Deployment"
 inputs:
