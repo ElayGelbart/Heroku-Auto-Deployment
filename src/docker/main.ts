@@ -10,7 +10,7 @@ const dockerDeploymentFn = (AppName: string) => {
       `heroku container:push web -a ${AppName}`,
       appDir ? { cwd: appDir } : {}
     );
-    console.log("✅✅✅ pushed container successfully ✅✅✅");
+    console.log("✅✅ pushed container successfully ✅✅");
     execSync(
       `heroku container:release web -a ${AppName}`,
       appDir ? { cwd: appDir } : {}
