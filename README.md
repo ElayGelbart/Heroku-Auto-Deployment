@@ -1,116 +1,113 @@
-# Create a JavaScript Action
+# Heroku Auto Deployment
 
-<p align="center">
-  <a href="https://github.com/actions/javascript-action/actions"><img alt="javscript-action status" src="https://github.com/actions/javascript-action/workflows/units-test/badge.svg"></a>
-</p>
+This GitHub action can help you automate your deployment to Heroku :rocket:
 
-Use this template to bootstrap the creation of a JavaScript action.:rocket:
+With just 2 lines of code you can save a lot of time and focus on whats matter.
 
-This template includes tests, linting, a validation workflow, publishing, and versioning guidance.
+Please read the Documentation till the end before you start using the action.
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
+## Vision
 
-## Create an action from this template
+_Heroku Auto Deployment_ not here to replace other action in the market.
+This action provides a better CI/CD experience for workflows with much less configurations and more capabilities.
+_Heroku Auto Deployment_ wants you to config your app in Heroku dashboard, and use the action for only continuous deployment for heroku.
+Found a bug or missing feature? fell free to open a _issue_.
 
-Click the `Use this Template` and provide the new repo details for your action
+## Examples
 
-## Code in Main
+### Git deployment
 
-Install the dependencies
+```yml
+name: Publish To Heroku With Git
+on:
+  push:
+    branches: [main]
 
-```bash
-npm install
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Dir
+        uses: actions/checkout@v2
+      - name: Heroku Deployment
+        uses: ElayGelbart/Heroku-Auto-Deployment@v1
+        with:
+          herokuApiKey: ${{ secrets.HEROKU_API_KEY}}
+          herokuAppName: ${{ secrets.HEROKU_APP_NAME}}
 ```
 
-Run the tests :heavy_check_mark:
+### Docker deployment
 
-```bash
-$ npm test
+```yml
+name: Publish To Heroku With Docker
+on:
+  push:
+    branches: [main]
 
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-...
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Dir
+        uses: actions/checkout@v2
+      - name: Heroku Deployment
+        uses: ElayGelbart/Heroku-Auto-Deployment@v1
+        with:
+          herokuApiKey: ${{ secrets.HEROKU_API_KEY}}
+          herokuAppName: ${{ secrets.HEROKU_APP_NAME}}
+          useDocker: true
 ```
 
-## Change action.yml
+## Required steps
 
-The action.yml defines the inputs and output for your action.
+### Inputs
 
-Update the action.yml with your name, description, inputs and outputs for your action.
+#### Required
 
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
+the specialty of this action is it only need 2 Inputs to deploy(not 3 like the rest)
 
-## Change the Code
+**herokuApiKey** - Each account in Heroku has his own unique API Key, you can get your key by going to Heroku Account settings and reveal the key.
+other way is to login to heroku though CLI and run `heroku auth:token`.
+API key is personal so we don't want everyone to know it, **_Best practice_** is to save it in GitHub Secrets under the name _HEROKU_API_KEY_
+herokuAppName
 
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
+**herokuAppName** - Your application name you created in Heroku. although it can be visible it recommended to keep it in GitHub Secrets.
 
-```javascript
-const core = require('@actions/core');
-...
+#### Optional
 
-async function run() {
-  try {
-      ...
-  }
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
+**useDocker** - if you wish to deploy to Heroku thorough Dockerfile, all you have to do is set this input to "true".
 
-run()
+**branch** - you have the option to deploy with Git and choose other branch, just type the name of it. The default is the current branch.
+_branch only capable for Git Deployment_
+
+**dir** - Application directory in git repository for more complex repositories. The default is root dir. this work both for Dockerfile and for Git Deployment.
+Good:
+
+```yml
+dir: server
 ```
 
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
+Bad:
 
-## Package for distribution
-
-GitHub Actions will run the entry point from the action.yml. Packaging assembles the code into one file that can be checked in to Git, enabling fast and reliable execution and preventing the need to check in node_modules.
-
-Actions are run from GitHub repos.  Packaging the action will create a packaged action in the dist folder.
-
-Run prepare
-
-```bash
-npm run prepare
+```yml
+dir: ./server
+dir: /server
 ```
 
-Since the packaged index.js is run from the dist folder.
+## Deployment with Git
 
-```bash
-git add dist
-```
+when _useDocker_ input not checked, the action deploy push the git repository to the heroku main/master. Please Check that in the root dir the file you need for
+the buildpack of heroku exists or give some other directions to run your app.
 
-## Create a release branch
+## Deployment with Docker
 
-Users shouldn't consume the action from master since that would be latest code and actions can break compatibility between major versions.
+when _useDocker_ input is true, the action deploy with Dockerfile in the root dir. Dockerfile must be name "Dockerfile" and not "DockerFile" or "dockerfile".
 
-Checkin to the v1 release branch
+## Important Information
 
-```bash
-git checkout -b v1
-git commit -a -m "v1 release"
-```
+[-] use _dir_ input with caution, It's ignore all the repository files who is not included in _dir_.
+[-] before bringing your app deployment to action, define your build pack and env variable and etc.
+[-] always make sure you deploy your app yourself for the first time to ensure it can run.
+[-] never share your Heroku APIKEY, it's work like magic and can damage in the wrong hands.
 
-```bash
-git push origin v1
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket:
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Usage
-
-You can now consume the action by referencing the v1 branch
-
-```yaml
-uses: actions/javascript-action@v1
-with:
-  milliseconds: 1000
-```
-
-See the [actions tab](https://github.com/actions/javascript-action/actions) for runs of this action! :rocket:
+See the [Heroku Deployment](https://devcenter.heroku.com/categories/deployment) for more info about deployment! :rocket:
