@@ -1,13 +1,25 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: "Heroku Auto Deployment"
+author: "Elay Gelbart"
+description: "Heroku Deployment"
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  herokuAppName:
+    description: "Name of the heroku application to which the build is to be sent."
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  herokuApiKey:
+    description: "Heroku API key"
+    required: true
+  useDocker:
+    description: "Selected branch to deployment"
+    default: ""
+    required: false
+  branch:
+    description: "Selected branch to deployment"
+    default: "HEAD"
+    required: false
+  dir:
+    description: "Selected Application Dir"
+    default: ""
+    required: false
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"

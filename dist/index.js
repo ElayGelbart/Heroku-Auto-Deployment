@@ -1,7 +1,7 @@
-require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 351:
+/***/ 140:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -27,8 +27,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.issue = exports.issueCommand = void 0;
-const os = __importStar(__nccwpck_require__(87));
-const utils_1 = __nccwpck_require__(278);
+const os = __importStar(__nccwpck_require__(37));
+const utils_1 = __nccwpck_require__(596);
 /**
  * Commands
  *
@@ -100,7 +100,7 @@ function escapeProperty(s) {
 
 /***/ }),
 
-/***/ 186:
+/***/ 722:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -135,12 +135,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getIDToken = exports.getState = exports.saveState = exports.group = exports.endGroup = exports.startGroup = exports.info = exports.notice = exports.warning = exports.error = exports.debug = exports.isDebug = exports.setFailed = exports.setCommandEcho = exports.setOutput = exports.getBooleanInput = exports.getMultilineInput = exports.getInput = exports.addPath = exports.setSecret = exports.exportVariable = exports.ExitCode = void 0;
-const command_1 = __nccwpck_require__(351);
-const file_command_1 = __nccwpck_require__(717);
-const utils_1 = __nccwpck_require__(278);
-const os = __importStar(__nccwpck_require__(87));
-const path = __importStar(__nccwpck_require__(622));
-const oidc_utils_1 = __nccwpck_require__(41);
+const command_1 = __nccwpck_require__(140);
+const file_command_1 = __nccwpck_require__(197);
+const utils_1 = __nccwpck_require__(596);
+const os = __importStar(__nccwpck_require__(37));
+const path = __importStar(__nccwpck_require__(17));
+const oidc_utils_1 = __nccwpck_require__(395);
 /**
  * The code to exit an action
  */
@@ -419,7 +419,7 @@ exports.getIDToken = getIDToken;
 
 /***/ }),
 
-/***/ 717:
+/***/ 197:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -448,9 +448,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.issueCommand = void 0;
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const fs = __importStar(__nccwpck_require__(747));
-const os = __importStar(__nccwpck_require__(87));
-const utils_1 = __nccwpck_require__(278);
+const fs = __importStar(__nccwpck_require__(147));
+const os = __importStar(__nccwpck_require__(37));
+const utils_1 = __nccwpck_require__(596);
 function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
@@ -468,7 +468,7 @@ exports.issueCommand = issueCommand;
 
 /***/ }),
 
-/***/ 41:
+/***/ 395:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -484,9 +484,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.OidcClient = void 0;
-const http_client_1 = __nccwpck_require__(925);
-const auth_1 = __nccwpck_require__(702);
-const core_1 = __nccwpck_require__(186);
+const http_client_1 = __nccwpck_require__(851);
+const auth_1 = __nccwpck_require__(417);
+const core_1 = __nccwpck_require__(722);
 class OidcClient {
     static createHttpClient(allowRetry = true, maxRetry = 10) {
         const requestOptions = {
@@ -552,7 +552,7 @@ exports.OidcClient = OidcClient;
 
 /***/ }),
 
-/***/ 278:
+/***/ 596:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -599,7 +599,7 @@ exports.toCommandProperties = toCommandProperties;
 
 /***/ }),
 
-/***/ 702:
+/***/ 417:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -665,15 +665,15 @@ exports.PersonalAccessTokenCredentialHandler = PersonalAccessTokenCredentialHand
 
 /***/ }),
 
-/***/ 925:
+/***/ 851:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const http = __nccwpck_require__(605);
-const https = __nccwpck_require__(211);
-const pm = __nccwpck_require__(443);
+const http = __nccwpck_require__(685);
+const https = __nccwpck_require__(687);
+const pm = __nccwpck_require__(410);
 let tunnel;
 var HttpCodes;
 (function (HttpCodes) {
@@ -1092,7 +1092,7 @@ class HttpClient {
         if (useProxy) {
             // If using proxy, need tunnel
             if (!tunnel) {
-                tunnel = __nccwpck_require__(294);
+                tunnel = __nccwpck_require__(866);
             }
             const agentOptions = {
                 maxSockets: maxSockets,
@@ -1210,7 +1210,7 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 443:
+/***/ 410:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1275,27 +1275,27 @@ exports.checkBypass = checkBypass;
 
 /***/ }),
 
-/***/ 294:
+/***/ 866:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-module.exports = __nccwpck_require__(219);
+module.exports = __nccwpck_require__(113);
 
 
 /***/ }),
 
-/***/ 219:
+/***/ 113:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 
-var net = __nccwpck_require__(631);
-var tls = __nccwpck_require__(16);
-var http = __nccwpck_require__(605);
-var https = __nccwpck_require__(211);
-var events = __nccwpck_require__(614);
-var assert = __nccwpck_require__(357);
-var util = __nccwpck_require__(669);
+var net = __nccwpck_require__(808);
+var tls = __nccwpck_require__(404);
+var http = __nccwpck_require__(685);
+var https = __nccwpck_require__(687);
+var events = __nccwpck_require__(361);
+var assert = __nccwpck_require__(491);
+var util = __nccwpck_require__(837);
 
 
 exports.httpOverHttp = httpOverHttp;
@@ -1555,24 +1555,158 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 258:
-/***/ ((module) => {
+/***/ 907:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
-    }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-
-module.exports = wait;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(722));
+const child_process_1 = __nccwpck_require__(81);
+const dockerDeploymentFn = (AppName) => {
+    try {
+        (0, child_process_1.execSync)("heroku container:login");
+        console.log("✅ logged the container ✅");
+        const appDir = core_1.default.getInput("dir");
+        (0, child_process_1.execSync)(`heroku container:push web -a ${AppName}`, appDir ? { cwd: appDir } : {});
+        console.log("✅✅✅ pushed container successfully ✅✅✅");
+        (0, child_process_1.execSync)(`heroku container:release web -a ${AppName}`, appDir ? { cwd: appDir } : {});
+        console.log("💥🐋🐋🐋💥 App Released To Heroku! 💥🐋🐋🐋💥 ");
+    }
+    catch (error) {
+        core_1.default.setFailed(error);
+        console.log(`🛑❌deployment failed❌🛑`);
+        return;
+    }
+};
+exports["default"] = dockerDeploymentFn;
 
 
 /***/ }),
 
-/***/ 357:
+/***/ 96:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(722));
+const child_process_1 = __nccwpck_require__(81);
+const utils_1 = __nccwpck_require__(772);
+const gitDeploymentFn = (AppName, HerokuApiKey) => {
+    try {
+        (0, child_process_1.execSync)(`cat >~/.netrc <<EOF
+    machine api.heroku.com
+      login _
+      password ${HerokuApiKey}
+    machine git.heroku.com
+      login _
+      password ${HerokuApiKey}
+      EOF`);
+        const head = core_1.default.getInput("branch");
+        const appDir = core_1.default.getInput("dir");
+        (0, child_process_1.execSync)(`heroku git:remote -a ${AppName}`);
+        console.log("✅ set git remote ✅");
+        (0, utils_1.checkShallow)();
+        (0, utils_1.gitStack)(AppName);
+        if (appDir) {
+            (0, child_process_1.execSync)(`git push heroku \`git subtree split --prefix ${appDir} ${head}\`:refs/heads/main --force`);
+        }
+        else {
+            (0, child_process_1.execSync)(`git push heroku ${head}:refs/heads/main -f`);
+        }
+        console.log("🔥💥😀 pushed successfully to heroku 🔥💥😀");
+    }
+    catch (error) {
+        core_1.default.setFailed(error);
+        console.log(`🛑❌deployment failed❌🛑`);
+        return;
+    }
+};
+exports["default"] = gitDeploymentFn;
+
+
+/***/ }),
+
+/***/ 772:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.gitStack = exports.checkShallow = void 0;
+const child_process_1 = __nccwpck_require__(81);
+const checkShallow = () => {
+    const isShallow = (0, child_process_1.execSync)("git rev-parse --is-shallow-repository").toString();
+    if (isShallow.match(/true/)) {
+        (0, child_process_1.execSync)("git fetch --prune --unshallow");
+        console.log("git unshallow repository🔄");
+    }
+};
+exports.checkShallow = checkShallow;
+const gitStack = (AppName) => {
+    (0, child_process_1.execSync)("heroku stack:set heroku-20");
+    (0, child_process_1.execSync)("heroku plugins:install heroku-repo");
+    (0, child_process_1.execSync)(`heroku repo:reset -a ${AppName}`);
+};
+exports.gitStack = gitStack;
+
+
+/***/ }),
+
+/***/ 278:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(722));
+const main_1 = __importDefault(__nccwpck_require__(907));
+const main_2 = __importDefault(__nccwpck_require__(96));
+try {
+    (function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const HerokuApiKey = core_1.default.getInput("herokuApiKey");
+            process.env.HEROKU_API_KEY = HerokuApiKey;
+            const AppName = core_1.default.getInput("herokuAppName");
+            console.log(`Application Name: ${AppName}`);
+            if (core_1.default.getInput("useDocker")) {
+                console.log("🐋 deployment with Docker 🐋");
+                (0, main_1.default)(AppName);
+            }
+            else {
+                console.log("🐈 deployment with Git 🐈");
+                (0, main_2.default)(AppName, HerokuApiKey);
+            }
+        });
+    })();
+}
+catch (error) {
+    core_1.default.setFailed(error);
+}
+
+
+/***/ }),
+
+/***/ 491:
 /***/ ((module) => {
 
 "use strict";
@@ -1580,7 +1714,15 @@ module.exports = require("assert");
 
 /***/ }),
 
-/***/ 614:
+/***/ 81:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
+/***/ 361:
 /***/ ((module) => {
 
 "use strict";
@@ -1588,7 +1730,7 @@ module.exports = require("events");
 
 /***/ }),
 
-/***/ 747:
+/***/ 147:
 /***/ ((module) => {
 
 "use strict";
@@ -1596,7 +1738,7 @@ module.exports = require("fs");
 
 /***/ }),
 
-/***/ 605:
+/***/ 685:
 /***/ ((module) => {
 
 "use strict";
@@ -1604,7 +1746,7 @@ module.exports = require("http");
 
 /***/ }),
 
-/***/ 211:
+/***/ 687:
 /***/ ((module) => {
 
 "use strict";
@@ -1612,7 +1754,7 @@ module.exports = require("https");
 
 /***/ }),
 
-/***/ 631:
+/***/ 808:
 /***/ ((module) => {
 
 "use strict";
@@ -1620,7 +1762,7 @@ module.exports = require("net");
 
 /***/ }),
 
-/***/ 87:
+/***/ 37:
 /***/ ((module) => {
 
 "use strict";
@@ -1628,7 +1770,7 @@ module.exports = require("os");
 
 /***/ }),
 
-/***/ 622:
+/***/ 17:
 /***/ ((module) => {
 
 "use strict";
@@ -1636,7 +1778,7 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ 16:
+/***/ 404:
 /***/ ((module) => {
 
 "use strict";
@@ -1644,7 +1786,7 @@ module.exports = require("tls");
 
 /***/ }),
 
-/***/ 669:
+/***/ 837:
 /***/ ((module) => {
 
 "use strict";
@@ -1690,34 +1832,12 @@ module.exports = require("util");
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-const core = __nccwpck_require__(186);
-const wait = __nccwpck_require__(258);
-
-
-// most @actions toolkit packages have async methods
-async function run() {
-  try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run();
-
-})();
-
-module.exports = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __nccwpck_require__(278);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index.js.map
