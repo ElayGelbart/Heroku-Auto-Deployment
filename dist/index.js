@@ -1560,24 +1560,40 @@ exports.debug = debug; // for test
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(186));
+const core = __importStar(__nccwpck_require__(186));
 const child_process_1 = __nccwpck_require__(129);
 const dockerDeploymentFn = (AppName) => {
     try {
         (0, child_process_1.execSync)("heroku container:login");
         console.log("✅ logged the container ✅");
-        const appDir = core_1.default.getInput("dir");
+        const appDir = core.getInput("dir");
         (0, child_process_1.execSync)(`heroku container:push web -a ${AppName}`, appDir ? { cwd: appDir } : {});
         console.log("✅✅✅ pushed container successfully ✅✅✅");
         (0, child_process_1.execSync)(`heroku container:release web -a ${AppName}`, appDir ? { cwd: appDir } : {});
         console.log("💥🐋🐋🐋💥 App Released To Heroku! 💥🐋🐋🐋💥 ");
     }
     catch (error) {
-        core_1.default.setFailed(error);
+        core.setFailed(error);
         console.log(`🛑❌deployment failed❌🛑`);
         return;
     }
@@ -1592,11 +1608,27 @@ exports.default = dockerDeploymentFn;
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(186));
+const core = __importStar(__nccwpck_require__(186));
 const child_process_1 = __nccwpck_require__(129);
 const utils_1 = __nccwpck_require__(461);
 const gitDeploymentFn = (AppName, HerokuApiKey) => {
@@ -1609,8 +1641,8 @@ const gitDeploymentFn = (AppName, HerokuApiKey) => {
       login _
       password ${HerokuApiKey}
       EOF`);
-        const head = core_1.default.getInput("branch");
-        const appDir = core_1.default.getInput("dir");
+        const head = core.getInput("branch");
+        const appDir = core.getInput("dir");
         (0, child_process_1.execSync)(`heroku git:remote -a ${AppName}`);
         console.log("✅ set git remote ✅");
         (0, utils_1.checkShallow)();
@@ -1624,7 +1656,7 @@ const gitDeploymentFn = (AppName, HerokuApiKey) => {
         console.log("🔥💥😀 pushed successfully to heroku 🔥💥😀");
     }
     catch (error) {
-        core_1.default.setFailed(error);
+        core.setFailed(error);
         console.log(`🛑❌deployment failed❌🛑`);
         return;
     }
@@ -1665,6 +1697,25 @@ exports.gitStack = gitStack;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -1678,17 +1729,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(186));
+const core = __importStar(__nccwpck_require__(186));
 const main_1 = __importDefault(__nccwpck_require__(108));
 const main_2 = __importDefault(__nccwpck_require__(940));
 try {
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
-            const HerokuApiKey = core_1.default.getInput("herokuApiKey");
+            const HerokuApiKey = core.getInput("herokuApiKey");
             process.env.HEROKU_API_KEY = HerokuApiKey;
-            const AppName = core_1.default.getInput("herokuAppName");
+            const AppName = core.getInput("herokuAppName");
             console.log(`Application Name: ${AppName}`);
-            if (core_1.default.getInput("useDocker")) {
+            if (core.getInput("useDocker")) {
                 console.log("🐋 deployment with Docker 🐋");
                 (0, main_1.default)(AppName);
             }
@@ -1700,7 +1751,7 @@ try {
     })();
 }
 catch (error) {
-    core_1.default.setFailed(error);
+    core.setFailed(error);
 }
 
 

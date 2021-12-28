@@ -1,4 +1,4 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 import { execSync } from "child_process";
 import { checkShallow, gitStack } from "./utils";
 const gitDeploymentFn = (AppName: string, HerokuApiKey: string) => {

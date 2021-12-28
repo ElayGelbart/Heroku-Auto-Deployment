@@ -1,4 +1,4 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 import dockerDeployment from "./docker/main";
 import gitDeployment from "./git/main";
 
