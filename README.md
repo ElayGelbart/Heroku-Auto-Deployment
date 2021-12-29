@@ -105,9 +105,9 @@ when _useDocker_ input is true, the action deploy with Dockerfile in the root di
 
 ## Important Information
 
-[-] use _dir_ input with caution, It's ignore all the repository files who is not included in _dir_.
-[-] before bringing your app deployment to action, define your build pack and env variable and etc.
-[-] always make sure you deploy your app yourself for the first time to ensure it can run.
-[-] never share your Heroku APIKEY, it's work like magic and can damage in the wrong hands.
+- use _dir_ input with caution, It's ignore all the repository files who is not included in _dir_.
+- before bringing your app deployment to action, define your build pack and env variable and etc.
+- always make sure you deploy your app yourself for the first time to ensure it can run.
+- never share your Heroku APIKEY, it's work like magic and can damage in the wrong hands.
 
 See the [Heroku Deployment](https://devcenter.heroku.com/categories/deployment) for more info about deployment! :rocket:
