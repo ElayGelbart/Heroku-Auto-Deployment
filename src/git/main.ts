@@ -1,6 +1,7 @@
 import * as core from "@actions/core";
 import { execSync } from "child_process";
 import { checkShallow, gitStack } from "./utils";
+
 const gitDeploymentFn = (AppName: string, HerokuApiKey: string) => {
   try {
     execSync(`cat >~/.netrc <<EOF
@@ -14,7 +15,7 @@ const gitDeploymentFn = (AppName: string, HerokuApiKey: string) => {
     const head = core.getInput("branch");
     const appDir = core.getInput("dir");
     execSync(`heroku git:remote -a ${AppName}`);
-    console.log("✅ set git remote ✅");
+    core.info("✅ set git remote ✅");
     checkShallow();
     gitStack(AppName);
     if (appDir) {
@@ -24,11 +25,12 @@ const gitDeploymentFn = (AppName: string, HerokuApiKey: string) => {
     } else {
       execSync(`git push heroku ${head}:refs/heads/main -f`);
     }
-    console.log("🔥💥😀 pushed successfully to heroku 🔥💥😀");
+    core.info("🔥💥😀 pushed successfully to heroku 🔥💥😀");
   } catch (error) {
     core.setFailed(error as string);
-    console.log(`🛑❌deployment failed❌🛑`);
+    core.info(`🛑❌deployment failed❌🛑`);
     return;
   }
 };
+
 export default gitDeploymentFn;
