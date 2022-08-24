@@ -9,8 +9,8 @@ inputs:
     description: "Heroku API key"
     required: true
   useDocker:
-    description: "Selected branch to deployment"
-    default: ""
+    description: "Deploy the container image (Dockerfile) to Heroku"
+    default: "false"
     required: false
   branch:
     description: "Selected branch to deployment"
