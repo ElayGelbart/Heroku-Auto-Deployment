@@ -8,7 +8,7 @@ import gitDeployment from "./git/main";
     process.env.HEROKU_API_KEY = HerokuApiKey;
     const appName = core.getInput("herokuAppName");
     core.info(`Application Name: ${appName}`);
-    const useDocker = new Boolean(core.getInput("useDocker"));
+    const useDocker = core.getBooleanInput("useDocker");
     if (useDocker) {
       console.log("🐋 deployment with Docker 🐋");
       dockerDeployment(appName);
