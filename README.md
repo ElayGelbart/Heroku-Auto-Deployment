@@ -82,6 +82,8 @@ _branch only capable for Git Deployment_
 
 **dir** - Application directory in git repository for more complex repositories. The default is root dir. this works for both Dockerfile and Git Deployment.
 
+**herokuStackVersion** - if you want to specify the stack version.  Default is 20 (`heroku-20`)
+
 Good:
 
 ```yml

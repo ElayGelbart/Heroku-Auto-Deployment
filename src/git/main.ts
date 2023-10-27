@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import { execSync } from "child_process";
 import { checkShallow, gitStack } from "./utils";
 
-const gitDeploymentFn = (AppName: string, HerokuApiKey: string) => {
+const gitDeploymentFn = (AppName: string, HerokuApiKey: string, herokuStack: string) => {
   try {
     execSync(`cat >~/.netrc <<EOF
     machine api.heroku.com
@@ -17,7 +17,7 @@ const gitDeploymentFn = (AppName: string, HerokuApiKey: string) => {
     execSync(`heroku git:remote -a ${AppName}`);
     core.info("✅ set git remote ✅");
     checkShallow();
-    gitStack(AppName);
+    gitStack(AppName, herokuStack);
     if (appDir) {
       execSync(
         `git push heroku \`git subtree split --prefix ${appDir} ${head}\`:refs/heads/main --force`
