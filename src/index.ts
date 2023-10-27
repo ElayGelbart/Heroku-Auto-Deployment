@@ -8,13 +8,14 @@ import gitDeployment from "./git/main";
     process.env.HEROKU_API_KEY = HerokuApiKey;
     const appName = core.getInput("herokuAppName");
     core.info(`Application Name: ${appName}`);
+    const herokuStack = core.getInput("herokuStackVersion") ? core.getInput("herokuStackVersion") : "20";
     const useDocker = core.getBooleanInput("useDocker");
     if (useDocker) {
       console.log("🐋 deployment with Docker 🐋");
       dockerDeployment(appName);
     } else {
       console.log("🐈 deployment with Git 🐈");
-      gitDeployment(appName, HerokuApiKey);
+      gitDeployment(appName, HerokuApiKey, herokuStack);
     }
   } catch (error) {
     core.setFailed(error as string);
