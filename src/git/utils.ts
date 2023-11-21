@@ -10,7 +10,7 @@ export const checkShallow = (): void => {
   }
 };
 export const gitStack = (AppName: string): void => {
-  execSync("heroku stack:set heroku-20");
+  execSync("heroku stack:set heroku-22");
   execSync("heroku plugins:install heroku-repo");
   execSync(`heroku repo:reset -a ${AppName}`);
 };
